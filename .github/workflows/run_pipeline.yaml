@@ -16,12 +16,40 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
       - run: pip install --upgrade pip && pip install mkdocs mkdocs-gen-files
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Publish docs
         run: |
           cd $GITHUB_WORKSPACE
           mkdocs gh-deploy --clean --force -f ./mkdocs.yml
+
+  replace_file:
+    runs-on: ubuntu-latest
+    needs: build-and-deploy
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Copy the file to be replaced
+        run: cp resources/readthedocs_theme.css theme.css
+
+      - name: Checkout target branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages  # Replace with the branch you want to modify
+
+      - name: Replace the file in target branch
+        run: mv theme.css css/theme.css
+
+      - name: Commit and push changes
+        run: |
+          git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add css/theme.css
+          git commit -m "Edit default CSS"
+          git push origin gh-pages
