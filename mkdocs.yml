@@ -4,14 +4,9 @@ nav:
   - Home: index.md
   - Schema: schema/TEST_study_schema_v1.md
   - Style Guide: style/style_guide.md
-
+extra_css:
+  - ./resources/custom.css
 theme:
   name: readthedocs
   prev_next_buttons_location: none
-  extra_css:
-    - |
-      .wy-table-responsive table td,
-      .wy-table-responsive table th {
-        white-space: inherit
-      }
 
