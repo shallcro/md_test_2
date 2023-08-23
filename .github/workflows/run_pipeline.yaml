@@ -47,9 +47,6 @@ jobs:
         with:
           ref: gh-pages
           sparse-checkout: true   # Enable sparse checkout mode
-        run: |
-          echo 'css/theme.css' >> .git/info/sparse-checkout  # Specify the files/directories to include
-          git read-tree -mu HEAD  # Apply the sparse checkout configuration
 
       - name: Print workspace
         run: cat theme.css
