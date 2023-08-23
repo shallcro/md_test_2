@@ -48,7 +48,7 @@ jobs:
           ref: gh-pages  # Replace with the branch you want to modify
 
       - name: Print workspace
-        run: echo $GITHUB_WORKSPACE
+        run: cat theme.css
 
       - name: Replace the file in target branch
         run: mv theme.css css/theme.css
