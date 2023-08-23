@@ -1,0 +1,7 @@
+---
+  $schema: https://json-schema.org/draft-07/schema#
+  $id: https://schemas.TEST.umich.edu/schema/yaml/distributors?version=v1
+  curatorNotes: |
+    While distributor name and place are separate fields, they always appear in tandem. Therefore, a full distributor would be 'Ann Arbor, MI. Inter-university Consortium for Social and Political Research.' 
+
+    Because TEST itself is so frequently a distributor, the full name and location of TEST is easily accessible via a button in the metadata editor. If a non-TEST distributor is necessary, please confirm the standards with the Metadata Librarian. Please note that external distributors are often appropriate for Union Catalog entries.
