@@ -39,11 +39,17 @@ jobs:
       - name: Copy the file to be replaced
         run: cp resources/readthedocs_theme.css theme.css
 
+      - name: List files in directory
+        run: ls -R
+
       - name: Checkout target branch
         uses: actions/checkout@v3
         with:
           ref: gh-pages  # Replace with the branch you want to modify
 
+      - name: List files in directory
+        run: ls -R
+        
       - name: Replace the file in target branch
         run: mv theme.css css/theme.css
 
