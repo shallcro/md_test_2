@@ -42,10 +42,14 @@ jobs:
       - name: Print workspace
         run: echo $GITHUB_WORKSPACE
 
-      - name: Checkout target branch
+      - name: Checkout target branch with sparse checkout
         uses: actions/checkout@v3
         with:
-          ref: gh-pages  # Replace with the branch you want to modify
+          ref: gh-pages
+          sparse-checkout: true   # Enable sparse checkout mode
+        run: |
+          echo 'css/theme.css' >> .git/info/sparse-checkout  # Specify the files/directories to include
+          git read-tree -mu HEAD  # Apply the sparse checkout configuration
 
       - name: Print workspace
         run: cat theme.css
